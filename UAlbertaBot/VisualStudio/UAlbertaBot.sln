@@ -12,6 +12,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SparCraft", "..\..\SparCraft\VisualStudio\SparCraft.vcxproj", "{66236439-5968-4756-B2E7-8A29BEA99078}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BOSS", "..\..\BOSS\VisualStudio\BOSS.vcxproj", "{9F8709E3-AC4F-45F2-8105-4A99D8E2A127}"
+	ProjectSection(ProjectDependencies) = postProject
+		{66236439-5968-4756-B2E7-8A29BEA99078} = {66236439-5968-4756-B2E7-8A29BEA99078}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Service", "..\..\Service\Service.vcxproj", "{E8707045-07AA-4CF2-8896-71866CC6D8A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +54,14 @@ Global
 		{9F8709E3-AC4F-45F2-8105-4A99D8E2A127}.Release|Win32.ActiveCfg = Release|Win32
 		{9F8709E3-AC4F-45F2-8105-4A99D8E2A127}.Release|Win32.Build.0 = Release|Win32
 		{9F8709E3-AC4F-45F2-8105-4A99D8E2A127}.Release|x64.ActiveCfg = Release|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Debug|Itanium.ActiveCfg = Debug|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Debug|Win32.Build.0 = Debug|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Debug|x64.ActiveCfg = Debug|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Release|Itanium.ActiveCfg = Release|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Release|Win32.ActiveCfg = Release|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Release|Win32.Build.0 = Release|Win32
+		{E8707045-07AA-4CF2-8896-71866CC6D8A1}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

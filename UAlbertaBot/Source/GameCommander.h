@@ -5,7 +5,7 @@
 #include "InformationManager.h"
 #include "MapGrid.h"
 #include "WorkerManager.h"
-#include "ProductionManager.h"
+#include "ProductionServiceManager.h"
 #include "BuildingManager.h"
 #include "ScoutManager.h"
 #include "StrategyManager.h"

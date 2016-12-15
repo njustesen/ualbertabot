@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../BOSS/source;../SparCraft/source;../source;$(BWTA_DIR)/include;$(BWAPI_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../BOSS/source;../Service;../SparCraft/source;../source;$(BWTA_DIR)/include;$(BWAPI_DIR)/include;%(AdditionalIncludeDirectories);C:\libs\boost_1_60_0</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EXAMPLEAIMODULE_EXPORTS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -79,6 +79,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>C:\libs\boost_1_60_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,11 +116,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\AutoObserver.cpp" />
-    <ClCompile Include="..\Source\BOSSManager.cpp" />
     <ClCompile Include="..\source\BuildingManager.cpp" />
     <ClCompile Include="..\source\BuildingPlacer.cpp" />
     <ClCompile Include="..\source\BuildOrder.cpp" />
     <ClCompile Include="..\source\BuildOrderQueue.cpp" />
+    <ClCompile Include="..\Source\BuildOrderServiceManager.cpp" />
     <ClCompile Include="..\Source\CombatSimulation.cpp" />
     <ClCompile Include="..\Source\CombatCommander.cpp" />
     <ClCompile Include="..\Source\Common.cpp" />
@@ -138,7 +139,7 @@
     <ClCompile Include="..\Source\Config.cpp" />
     <ClCompile Include="..\Source\Micro.cpp" />
     <ClCompile Include="..\Source\ParseUtils.cpp" />
-    <ClCompile Include="..\source\ProductionManager.cpp" />
+    <ClCompile Include="..\Source\ProductionServiceManager.cpp" />
     <ClCompile Include="..\source\RangedManager.cpp" />
     <ClCompile Include="..\source\ScoutManager.cpp" />
     <ClCompile Include="..\Source\Squad.cpp" />
@@ -156,11 +157,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AutoObserver.h" />
-    <ClInclude Include="..\Source\BOSSManager.h" />
     <ClInclude Include="..\source\BuildingManager.h" />
     <ClInclude Include="..\source\BuildingPlacer.h" />
     <ClInclude Include="..\source\BuildOrder.h" />
     <ClInclude Include="..\source\BuildOrderQueue.h" />
+    <ClInclude Include="..\Source\BuildOrderServiceManager.h" />
     <ClInclude Include="..\Source\CombatSimulation.h" />
     <ClInclude Include="..\Source\CombatCommander.h" />
     <ClInclude Include="..\Source\Common.h" />
@@ -180,7 +181,7 @@
     <ClInclude Include="..\Source\Config.h" />
     <ClInclude Include="..\Source\Micro.h" />
     <ClInclude Include="..\Source\ParseUtils.h" />
-    <ClInclude Include="..\source\ProductionManager.h" />
+    <ClInclude Include="..\Source\ProductionServiceManager.h" />
     <ClInclude Include="..\source\RangedManager.h" />
     <ClInclude Include="..\source\ScoutManager.h" />
     <ClInclude Include="..\Source\Squad.h" />

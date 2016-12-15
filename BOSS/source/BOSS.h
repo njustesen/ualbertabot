@@ -10,7 +10,7 @@
 #include "Timer.hpp"
 #include "ActionType.h"
 #include "Tools.h"
-#include "DFBB_BuildOrderSmartSearch.h"
+#include "BuildOrderSearchService.h"
 #include "Position.hpp"
 #include "BuildOrderSearchGoal.h"
 #include "BuildOrder.h"

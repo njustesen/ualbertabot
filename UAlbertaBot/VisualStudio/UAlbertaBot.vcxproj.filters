@@ -75,9 +75,6 @@
     <ClCompile Include="..\source\BuildingPlacer.cpp">
       <Filter>game\macro</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\ProductionManager.cpp">
-      <Filter>game\macro</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\WorkerData.cpp">
       <Filter>game\macro</Filter>
     </ClCompile>
@@ -103,9 +100,6 @@
       <Filter>game\combat\micro</Filter>
     </ClCompile>
     <ClCompile Include="..\source\BuildOrderQueue.cpp">
-      <Filter>game\macro\buildorders</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\BOSSManager.cpp">
       <Filter>game\macro\buildorders</Filter>
     </ClCompile>
     <ClCompile Include="..\source\BuildOrder.cpp">
@@ -153,6 +147,12 @@
     <ClCompile Include="..\Source\Logger.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\BuildOrderServiceManager.cpp">
+      <Filter>game\macro\buildorders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ProductionServiceManager.cpp">
+      <Filter>game\macro</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\CombatCommander.h">
@@ -197,9 +197,6 @@
     <ClInclude Include="..\source\BuildingPlacer.h">
       <Filter>game\macro</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\ProductionManager.h">
-      <Filter>game\macro</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\WorkerData.h">
       <Filter>game\macro</Filter>
     </ClInclude>
@@ -225,9 +222,6 @@
       <Filter>game\combat\micro</Filter>
     </ClInclude>
     <ClInclude Include="..\source\BuildOrderQueue.h">
-      <Filter>game\macro\buildorders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\BOSSManager.h">
       <Filter>game\macro\buildorders</Filter>
     </ClInclude>
     <ClInclude Include="..\source\BuildOrder.h">
@@ -277,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\GameHistory.hpp">
       <Filter>game\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\BuildOrderServiceManager.h">
+      <Filter>game\macro\buildorders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\ProductionServiceManager.h">
+      <Filter>game\macro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

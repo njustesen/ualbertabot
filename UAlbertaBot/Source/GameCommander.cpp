@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "GameCommander.h"
 #include "UnitUtil.h"
+#include "BuildOrderServiceManager.h"
 
 using namespace UAlbertaBot;
 
@@ -31,7 +32,7 @@ void GameCommander::update()
 	_timerManager.stopTimer(TimerManager::MapTools);
 
 	_timerManager.startTimer(TimerManager::Search);
-	BOSSManager::Instance().update(35 - _timerManager.getTotalElapsed());
+	BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 200);
 	_timerManager.stopTimer(TimerManager::Search);
 
 	// economy and base managers
@@ -40,7 +41,7 @@ void GameCommander::update()
 	_timerManager.stopTimer(TimerManager::Worker);
 
 	_timerManager.startTimer(TimerManager::Production);
-	ProductionManager::Instance().update();
+	ProductionServiceManager::Instance().update();
 	_timerManager.stopTimer(TimerManager::Production);
 
 	_timerManager.startTimer(TimerManager::Building);
@@ -68,9 +69,9 @@ void GameCommander::drawDebugInterface()
 	InformationManager::Instance().drawMapInformation();
 	BuildingManager::Instance().drawBuildingInformation(200,50);
 	BuildingPlacer::Instance().drawReservedTiles();
-	ProductionManager::Instance().drawProductionInformation(30, 50);
-	BOSSManager::Instance().drawSearchInformation(490, 100);
-    BOSSManager::Instance().drawStateInformation(250, 0);
+	//ProductionServiceManager::Instance().drawProductionInformation(30, 50);
+	//BuildOrderServiceManager::Instance().drawSearchInformation(490, 100);
+	//BuildOrderServiceManager::Instance().drawStateInformation(250, 0);
     
 	_combatCommander.drawSquadInformation(200, 30);
     _timerManager.displayTimers(490, 225);
@@ -231,7 +232,7 @@ void GameCommander::onUnitRenegade(BWAPI::Unit unit)
 
 void GameCommander::onUnitDestroy(BWAPI::Unit unit)		
 { 	
-	ProductionManager::Instance().onUnitDestroy(unit);
+	//ProductionServiceManager::Instance().onUnitDestroy(unit);
 	WorkerManager::Instance().onUnitDestroy(unit);
 	InformationManager::Instance().onUnitDestroy(unit); 
 }

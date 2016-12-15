@@ -112,6 +112,8 @@
     <ClCompile Include="..\source\SparCraftException.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\HttpClient.cpp" />
+    <ClCompile Include="..\source\Service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\AlphaBetaSearch.h">
@@ -261,6 +263,7 @@
     <ClInclude Include="..\source\SparCraftException.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Service.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">

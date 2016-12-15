@@ -1,5 +1,5 @@
 #include "ScoutManager.h"
-#include "ProductionManager.h"
+#include "WorkerManager.h"
 
 using namespace UAlbertaBot;
 
@@ -233,10 +233,11 @@ void ScoutManager::gasSteal()
 
     if (!_didGasSteal)
     {
-        ProductionManager::Instance().queueGasSteal();
-        _didGasSteal = true;
-        Micro::SmartMove(_workerScout, enemyGeyser->getPosition());
-        _gasStealStatus = "Did Gas Steal";
+        //TODO: GAS STEAL
+		//ProductionManager::Instance().queueGasSteal();
+        //_didGasSteal = true;
+        //Micro::SmartMove(_workerScout, enemyGeyser->getPosition());
+        //_gasStealStatus = "Did Gas Steal";
     }
 }
 

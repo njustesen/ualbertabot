@@ -16,6 +16,7 @@
 #define TIMER_H_DEF
 
 #ifdef WIN32   // Windows system specific
+	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
 #else          // Unix based system specific
 	#include <sys/time.h>

@@ -73,7 +73,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(BWAPI_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BWAPI_DIR)/include;%(AdditionalIncludeDirectories);C:\libs\boost_1_60_0;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -91,6 +91,11 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/NODEFAULTLIB:msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libs\boost_1_60_0\stage\lib</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -156,6 +161,7 @@
     <ClInclude Include="..\source\Random.hpp" />
     <ClInclude Include="..\source\Common.h" />
     <ClInclude Include="..\source\Position.hpp" />
+    <ClInclude Include="..\source\Service.h" />
     <ClInclude Include="..\source\SparCraft.h" />
     <ClInclude Include="..\source\SparCraftAssert.h" />
     <ClInclude Include="..\source\SparCraftException.h" />
@@ -183,6 +189,7 @@
     <ClCompile Include="..\source\Game.cpp" />
     <ClCompile Include="..\source\GameState.cpp" />
     <ClCompile Include="..\source\Hash.cpp" />
+    <ClCompile Include="..\source\HttpClient.cpp" />
     <ClCompile Include="..\source\Logger.cpp" />
     <ClCompile Include="..\source\MoveArray.cpp" />
     <ClCompile Include="..\source\Player.cpp" />
@@ -200,6 +207,7 @@
     <ClCompile Include="..\source\Player_Random.cpp" />
     <ClCompile Include="..\source\Player_UCT.cpp" />
     <ClCompile Include="..\source\PortfolioGreedySearch.cpp" />
+    <ClCompile Include="..\source\Service.cpp" />
     <ClCompile Include="..\source\SparCraft.cpp" />
     <ClCompile Include="..\source\SparCraftAssert.cpp" />
     <ClCompile Include="..\source\SparCraftException.cpp" />

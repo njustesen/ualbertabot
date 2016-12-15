@@ -1,0 +1,12 @@
+﻿Build started 15-12-2016 16:06:14.
+     1>Project "C:\ualbertabot\BuildOrderService\BuildOrderService.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (BuildOrderService2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
+         test.cpp
+     1>c:\ualbertabot\buildorderservice\test.cpp(1): fatal error C1083: Cannot open include file: 'Service.h': No such file or directory
+     1>Done Building Project "C:\ualbertabot\BuildOrderService\BuildOrderService.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.17
