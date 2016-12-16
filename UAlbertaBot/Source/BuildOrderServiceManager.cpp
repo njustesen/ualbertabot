@@ -38,8 +38,11 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
 {
 	// Only call service every frameSkip frames
 	if (currentFrame >= _nextSearchFrame){
+		
+		// Search
 		_searchService->search(_previousBuildOrder);	// Fails because Type_Count overflow..
 		_nextSearchFrame = currentFrame + frameSkip;
+
 	}
 }
 

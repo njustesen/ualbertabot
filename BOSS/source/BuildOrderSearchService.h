@@ -28,6 +28,5 @@ namespace BOSS{
 
 		//const BuildOrder & getBuildOrder() const;
 		
-
 	};
 }

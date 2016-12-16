@@ -13,7 +13,7 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::call(){
+std::string Service::call(std::vector<size_t> ownUnits, std::vector<size_t> oppUnits){
 	std::string message;
 	try
 	{

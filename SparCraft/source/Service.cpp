@@ -13,12 +13,20 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::call(){
+std::string Service::call(std::vector<int> state){
 	std::string message;
 	try
 	{
 		std::string host = "10.28.6.237";
-		std::string path = "/app/evolve/";
+		std::string path = "/app/evolve/?s=";
+
+		for (int i = 0; i < state.size(); i++){
+			std::string u = std::to_string(state[i]);
+			path.append(u);
+			if (i < state.size() - 1){
+				path.append("-");
+			}
+		}
 
 		//std::cout << "HOST " << host << "\n";
 		//std::cout << "GET " << path << "\n";

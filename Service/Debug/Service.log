@@ -1,8 +1,44 @@
-﻿Build started 15-12-2016 16:14:28.
-     1>Project "C:\ualbertabot\Service\Service.vcxproj" on node 2 (Build target(s)).
+﻿Build started 16-12-2016 14:52:30.
+     1>Project "C:\ualbertabot\Service\Service.vcxproj" on node 3 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib AssemblyInfo.cpp
-         AssemblyInfo.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib HttpClient.cpp Service.cpp
+         HttpClient.cpp
+         Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+         - add -D_WIN32_WINNT=0x0501 to the compiler command line; or
+         - add _WIN32_WINNT=0x0501 to your project's Preprocessor Definitions.
+         Assuming _WIN32_WINNT=0x0501 (i.e. Windows XP target).
+         Service.cpp
+         Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+         - add -D_WIN32_WINNT=0x0501 to the compiler command line; or
+         - add _WIN32_WINNT=0x0501 to your project's Preprocessor Definitions.
+         Assuming _WIN32_WINNT=0x0501 (i.e. Windows XP target).
+         Generating Code...
+     1>c:\libs\boost_1_60_0\boost\asio\detail\impl\winsock_init.ipp(67): warning C4793: 'boost::asio::detail::winsock_init_base::throw_on_error' : function compiled as native :
+         	Found an intrinsic not supported in managed code
+     1>c:\libs\boost_1_60_0\boost\asio\impl\handler_alloc_hook.ipp(40): warning C4793: 'boost::asio::asio_handler_allocate' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\handler_invoke_hook.hpp(68): warning C4793: 'boost::asio::asio_handler_invoke<boost::asio::detail::binder2<boost::_bi::bind_t<void,boost::_mfi::mf2<void,HttpClient,boost::system::error_code const &,boost::asio::ip::basic_resolver_iterator<boost::asio::ip::tcp> >,boost::_bi::list3<boost::_bi::value<HttpClient *>,boost::arg<1>,boost::arg<2> > >,boost::system::error_code,boost::asio::ip::basic_resolver_iterator<boost::asio::ip::tcp> > >' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\impl\handler_alloc_hook.ipp(57): warning C4793: 'boost::asio::asio_handler_deallocate' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\handler_invoke_hook.hpp(68): warning C4793: 'boost::asio::asio_handler_invoke<boost::asio::detail::binder1<boost::_bi::bind_t<void,boost::_mfi::mf2<void,HttpClient,boost::system::error_code const &,boost::asio::ip::basic_resolver_iterator<boost::asio::ip::tcp> >,boost::_bi::list3<boost::_bi::value<HttpClient *>,boost::arg<1>,boost::_bi::value<boost::asio::ip::basic_resolver_iterator<boost::asio::ip::tcp> > > >,boost::system::error_code> >' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\handler_invoke_hook.hpp(68): warning C4793: 'boost::asio::asio_handler_invoke<boost::asio::detail::binder2<boost::asio::detail::write_op<boost::asio::basic_stream_socket<boost::asio::ip::tcp,boost::asio::stream_socket_service<boost::asio::ip::tcp> >,boost::asio::const_buffers_1,boost::asio::detail::transfer_all_t,boost::asio::detail::write_streambuf_handler<std::allocator<char>,boost::_bi::bind_t<void,boost::_mfi::mf1<void,HttpClient,boost::system::error_code const &>,boost::_bi::list2<boost::_bi::value<HttpClient *>,boost::arg<1> > > > >,boost::system::error_code,unsigned int> >' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\detail\win_thread.hpp(47): warning C4793: 'boost::asio::detail::win_thread_base<boost::asio::detail::win_thread>::terminate_threads' : function compiled as native :
+         	Found an intrinsic not supported in managed code
+     1>c:\libs\boost_1_60_0\boost\asio\handler_invoke_hook.hpp(68): warning C4793: 'boost::asio::asio_handler_invoke<boost::asio::detail::binder2<boost::asio::detail::read_until_delim_string_op<boost::asio::basic_stream_socket<boost::asio::ip::tcp,boost::asio::stream_socket_service<boost::asio::ip::tcp> >,std::allocator<char>,boost::_bi::bind_t<void,boost::_mfi::mf1<void,HttpClient,boost::system::error_code const &>,boost::_bi::list2<boost::_bi::value<HttpClient *>,boost::arg<1> > > >,boost::system::error_code,unsigned int> >' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\handler_invoke_hook.hpp(68): warning C4793: 'boost::asio::asio_handler_invoke<boost::asio::detail::binder2<boost::asio::detail::read_streambuf_op<boost::asio::basic_stream_socket<boost::asio::ip::tcp,boost::asio::stream_socket_service<boost::asio::ip::tcp> >,std::allocator<char>,boost::asio::detail::transfer_at_least_t,boost::_bi::bind_t<void,boost::_mfi::mf1<void,HttpClient,boost::system::error_code const &>,boost::_bi::list2<boost::_bi::value<HttpClient *>,boost::arg<1> > > >,boost::system::error_code,unsigned int> >' : function compiled as native :
+         	varargs not supported under /clr
+     1>c:\libs\boost_1_60_0\boost\asio\detail\impl\win_iocp_io_service.ipp(102): warning C4793: 'boost::asio::detail::win_iocp_io_service::shutdown_service' : function compiled as native :
+         	Found an intrinsic not supported in managed code
+     1>c:\libs\boost_1_60_0\boost\asio\detail\impl\win_iocp_io_service.ipp(153): warning C4793: 'boost::asio::detail::win_iocp_io_service::run' : function compiled as native :
+         	Found an intrinsic not supported in managed code
+     1>c:\libs\boost_1_60_0\boost\asio\detail\impl\win_iocp_io_service.ipp(438): warning C4793: 'boost::asio::detail::win_iocp_io_service::do_one' : function compiled as native :
+         	Found an intrinsic not supported in managed code
+     1>c:\libs\boost_1_60_0\boost\asio\detail\impl\winsock_init.ipp(67): warning C4793: 'boost::asio::detail::winsock_init_base::throw_on_error' : function compiled as native :
+         	Found an intrinsic not supported in managed code
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ualbertabot\UAlbertaBot\VisualStudio\Debug\Service.dll" /INCREMENTAL /NOLOGO /LIBPATH:C:\libs\boost_1_60_0\stage\lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ualbertabot\UAlbertaBot\VisualStudio\Debug\Service.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
          Debug\AssemblyInfo.obj
@@ -14,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.20
+Time Elapsed 00:00:07.43
