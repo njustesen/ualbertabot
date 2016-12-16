@@ -21,7 +21,7 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder)
 	//std::string message = "";
 
 	// Check for errors
-	if (message.length() < 9 || message.substr(0, 8) == "Exception"){
+	if (message.length() >= 9 && message.substr(0, 8) == "Exception"){
 		return;
 	}
 
@@ -40,8 +40,9 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder)
 		
 		BWAPI::UnitType* unitType = new BWAPI::UnitType(*it);
 		ActionType* type = new ActionType(*unitType);
+		//std::string name = unitType->getName();
 		buildOrder.add(*type);
-		
+
 	}
 }
 
