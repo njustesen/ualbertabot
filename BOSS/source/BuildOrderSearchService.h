@@ -24,7 +24,7 @@ namespace BOSS{
 		
 		void print();
 
-		BuildOrder & search();
+		void search(BuildOrder & buildOrder);
 
 		//const BuildOrder & getBuildOrder() const;
 		

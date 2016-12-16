@@ -13,20 +13,20 @@ BuildOrderSearchService::BuildOrderSearchService(const GameState state)
 }
 
 
-BuildOrder & BuildOrderSearchService::search()
+void BuildOrderSearchService::search(BuildOrder & buildOrder)
 {
-	// Create new build order
-	BuildOrder buildOrder;
 
 	// Call service
-	
 	std::string message = _service.call();
 	//std::string message = "";
 
 	// Check for errors
 	if (message.length() < 9 || message.substr(0, 8) == "Exception"){
-		return buildOrder;
+		return;
 	}
+
+	// Clear build order
+	buildOrder = BOSS::BuildOrder();
 
 	// split message
 	std::vector<int> unitIDs;
@@ -43,8 +43,6 @@ BuildOrder & BuildOrderSearchService::search()
 		buildOrder.add(*type);
 		
 	}
-
-	return buildOrder;
 }
 
 

@@ -27,7 +27,7 @@ void ProductionServiceManager::performBuildOrderSearch()
         return;
     }
 
-	if (!BuildOrderServiceManager::Instance().isSearchInProgress()){
+	if (BuildOrderServiceManager::Instance().isSearchInProgress()){
 		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300);
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
 		if (buildOrder.size() > 0)

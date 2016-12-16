@@ -25,7 +25,7 @@ void BuildOrderServiceManager::startNewSearch(int currentFrame, int frameSkip)
     {
         BOSS::GameState initialState(BWAPI::Broodwar, BWAPI::Broodwar->self(), BuildingManager::Instance().buildingsQueued());
 		_searchService = SearchPtr(new BOSS::BuildOrderSearchService(initialState));
-		_previousBuildOrder = _searchService->search();
+		_searchService->search(_previousBuildOrder);
 		_nextSearchFrame = currentFrame + frameSkip;
     }
     catch (const BOSS::BOSSException)
@@ -38,7 +38,7 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
 {
 	// Only call service every frameSkip frames
 	if (currentFrame >= _nextSearchFrame){
-		_previousBuildOrder = _searchService->search();
+		_searchService->search(_previousBuildOrder);	// Fails because Type_Count overflow..
 		_nextSearchFrame = currentFrame + frameSkip;
 	}
 }
