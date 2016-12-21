@@ -4,5 +4,5 @@ class Service
 {
 public:
 	Service();
-	std::string call(std::vector<int> state);
+	std::string call(std::vector<int> state, int min, int gas);
 };

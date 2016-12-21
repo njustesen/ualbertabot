@@ -36,7 +36,7 @@ void BuildOrderServiceManager::startNewSearch(int currentFrame, int frameSkip)
 		}
 		BOSS::GameState initialState(BWAPI::Broodwar, BWAPI::Broodwar->self(), BuildingManager::Instance().buildingsQueued());
 		_searchService = SearchPtr(new BOSS::BuildOrderSearchService(initialState));
-		_searchService->search(_previousBuildOrder, state);
+		_searchService->search(_previousBuildOrder, state, BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas());
 		_nextSearchFrame = currentFrame + frameSkip;
     }
     catch (const BOSS::BOSSException)
@@ -62,7 +62,7 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
 			const UnitInfo & ui(kv.second);
 			state[ui.type.getID()]++;
 		}
-		_searchService->search(_previousBuildOrder, state);
+		_searchService->search(_previousBuildOrder, state, BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas());
 		_nextSearchFrame = currentFrame + frameSkip;
 
 	}

@@ -13,7 +13,7 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::call(std::vector<int> state){
+std::string Service::call(std::vector<int> state, int min, int gas){
 	std::string message;
 	try
 	{
@@ -27,6 +27,9 @@ std::string Service::call(std::vector<int> state){
 				path.append("-");
 			}
 		}
+
+		path.append("&min=" + std::to_string(min));
+		path.append("&gas=" + std::to_string(gas));
 
 		//std::cout << "HOST " << host << "\n";
 		//std::cout << "GET " << path << "\n";

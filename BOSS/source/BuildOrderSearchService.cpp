@@ -12,21 +12,11 @@ BuildOrderSearchService::BuildOrderSearchService(const GameState state)
 
 }
 
-void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> state)
+void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> state, int min, int gas)
 {
-	// Create game state
-	/*
-	std::vector<int> state(256);
-	
-	for (auto & unit : BWAPI::Broodwar->getAllUnits())
-	{
-		int typeId = unit->getType().getID();
-		state[typeId]++;
-	}
-	*/
 	
 	// Call service
-	std::string message = _service.call(state);
+	std::string message = _service.call(state, min, gas);
 	//std::string message = "";
 
 	// Check for errors
