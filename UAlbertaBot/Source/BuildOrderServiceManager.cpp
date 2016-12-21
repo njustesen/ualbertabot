@@ -65,6 +65,8 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
 		_searchService->search(_previousBuildOrder, state, BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas());
 		_nextSearchFrame = currentFrame + frameSkip;
 
+		//drawSearchInformation(20, 100);
+
 	}
 }
 

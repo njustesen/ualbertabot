@@ -69,9 +69,9 @@ void GameCommander::drawDebugInterface()
 	InformationManager::Instance().drawMapInformation();
 	BuildingManager::Instance().drawBuildingInformation(200,50);
 	BuildingPlacer::Instance().drawReservedTiles();
-	//ProductionServiceManager::Instance().drawProductionInformation(30, 50);
-	//BuildOrderServiceManager::Instance().drawSearchInformation(490, 100);
-	//BuildOrderServiceManager::Instance().drawStateInformation(250, 0);
+	ProductionServiceManager::Instance().drawProductionInformation(30, 50);
+	BuildOrderServiceManager::Instance().drawSearchInformation(490, 100);
+	BuildOrderServiceManager::Instance().drawStateInformation(250, 0);
     
 	_combatCommander.drawSquadInformation(200, 30);
     _timerManager.displayTimers(490, 225);
