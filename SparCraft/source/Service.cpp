@@ -17,7 +17,7 @@ std::string Service::call(std::vector<int> state){
 	std::string message;
 	try
 	{
-		std::string host = "10.28.6.237";
+		std::string host = "10.28.7.42";
 		std::string path = "/app/evolve/?s=";
 
 		for (int i = 0; i < state.size(); i++){

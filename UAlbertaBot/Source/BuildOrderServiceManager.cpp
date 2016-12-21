@@ -23,9 +23,20 @@ void BuildOrderServiceManager::startNewSearch(int currentFrame, int frameSkip)
     // convert from UAlbertaBot's meta goal type to BOSS ActionType goal
     try
     {
-        BOSS::GameState initialState(BWAPI::Broodwar, BWAPI::Broodwar->self(), BuildingManager::Instance().buildingsQueued());
+		std::vector<int> state(256);
+		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
+		{
+			const UnitInfo & ui(kv.second);
+			state[ui.type.getID()]++;
+		}
+		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
+		{
+			const UnitInfo & ui(kv.second);
+			state[ui.type.getID()]++;
+		}
+		BOSS::GameState initialState(BWAPI::Broodwar, BWAPI::Broodwar->self(), BuildingManager::Instance().buildingsQueued());
 		_searchService = SearchPtr(new BOSS::BuildOrderSearchService(initialState));
-		_searchService->search(_previousBuildOrder);
+		_searchService->search(_previousBuildOrder, state);
 		_nextSearchFrame = currentFrame + frameSkip;
     }
     catch (const BOSS::BOSSException)
@@ -40,7 +51,18 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
 	if (currentFrame >= _nextSearchFrame){
 		
 		// Search
-		_searchService->search(_previousBuildOrder);	// Fails because Type_Count overflow..
+		std::vector<int> state(256);
+		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
+		{
+			const UnitInfo & ui(kv.second);
+			state[ui.type.getID()]++;
+		}
+		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
+		{
+			const UnitInfo & ui(kv.second);
+			state[ui.type.getID()]++;
+		}
+		_searchService->search(_previousBuildOrder, state);
 		_nextSearchFrame = currentFrame + frameSkip;
 
 	}

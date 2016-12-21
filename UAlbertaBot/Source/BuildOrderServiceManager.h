@@ -5,6 +5,7 @@
 #include "../../BOSS/source/BOSS.h"
 #include "StrategyManager.h"
 #include <memory>
+#include "InformationManager.h"
 
 namespace UAlbertaBot
 {
