@@ -13,12 +13,12 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::call(std::vector<int> state, int min, int gas){
+std::string Service::call(std::vector<int> state, int frame, int min, int gas){
 	std::string message;
 	try
 	{
-		std::string host = "10.28.7.42";
-		std::string path = "/app/evolve/?s=";
+		std::string host = "127.0.0.1";
+		std::string path = "/app/update/?s=";
 
 		for (int i = 0; i < state.size(); i++){
 			std::string u = std::to_string(state[i]);
@@ -28,6 +28,7 @@ std::string Service::call(std::vector<int> state, int min, int gas){
 			}
 		}
 
+		path.append("&frame=" + std::to_string(frame));
 		path.append("&min=" + std::to_string(min));
 		path.append("&gas=" + std::to_string(gas));
 

@@ -24,7 +24,7 @@ namespace BOSS{
 		
 		void print();
 
-		void search(BuildOrder & buildOrder, std::vector<int> state, int min, int gas);
+		void search(BuildOrder & buildOrder, std::vector<int> state, int frame, int min, int gas);
 
 		//const BuildOrder & getBuildOrder() const;
 		

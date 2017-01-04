@@ -12,11 +12,11 @@ BuildOrderSearchService::BuildOrderSearchService(const GameState state)
 
 }
 
-void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> state, int min, int gas)
+void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> state, int frame, int min, int gas)
 {
 	
 	// Call service
-	std::string message = _service.call(state, min, gas);
+	std::string message = _service.call(state, frame, min, gas);
 	//std::string message = "";
 
 	// Check for errors
@@ -26,6 +26,11 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> s
 
 	// Clear build order
 	buildOrder = BOSS::BuildOrder();
+
+	// If service returns -1, return with empty build order
+	if (message == "-1"){
+		return;
+	}
 
 	// split message
 	std::vector<int> unitIDs;
