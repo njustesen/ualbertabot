@@ -13,23 +13,50 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::call(std::vector<int> state, int frame, int min, int gas){
+std::string Service::call(std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, int frame, int min, int gas){
 	std::string message;
 	try
 	{
 		std::string host = "127.0.0.1";
-		std::string path = "/app/update/?s=";
-
-		for (int i = 0; i < state.size(); i++){
-			std::string u = std::to_string(state[i]);
+		
+		std::string path = "/app/update/?own_units=";
+		for (int i = 0; i < own_units.size(); i++){
+			std::string u = std::to_string(own_units[i]);
 			path.append(u);
-			if (i < state.size() - 1){
+			if (i < own_units.size() - 1){
+				path.append("-");
+			}
+		}
+
+		path.append("&own_techs=");
+		for (int i = 0; i < own_techs.size(); i++){
+			std::string u = std::to_string(own_techs[i]);
+			path.append(u);
+			if (i < own_techs.size() - 1){
+				path.append("-");
+			}
+		}
+
+		path.append("&own_upgrades=");
+		for (int i = 0; i < own_upgrades.size(); i++){
+			std::string u = std::to_string(own_upgrades[i]);
+			path.append(u);
+			if (i < own_upgrades.size() - 1){
+				path.append("-");
+			}
+		}
+
+		path.append("&opp_units=");
+		for (int i = 0; i < opp_units.size(); i++){
+			std::string u = std::to_string(opp_units[i]);
+			path.append(u);
+			if (i < opp_units.size() - 1){
 				path.append("-");
 			}
 		}
 
 		path.append("&frame=" + std::to_string(frame));
-		path.append("&min=" + std::to_string(min));
+		path.append("&minerals=" + std::to_string(min));
 		path.append("&gas=" + std::to_string(gas));
 
 		//std::cout << "HOST " << host << "\n";

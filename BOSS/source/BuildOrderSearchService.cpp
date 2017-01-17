@@ -12,11 +12,11 @@ BuildOrderSearchService::BuildOrderSearchService(const GameState state)
 
 }
 
-void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> state, int frame, int min, int gas)
+void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, int frame, int min, int gas)
 {
 	
 	// Call service
-	std::string message = _service.call(state, frame, min, gas);
+	std::string message = _service.call(own_units, own_techs, own_upgrades, opp_units, frame, min, gas);
 	//std::string message = "";
 
 	// Check for errors
@@ -28,10 +28,31 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> s
 	buildOrder = BOSS::BuildOrder();
 
 	// If service returns -1, return with empty build order
-	if (message == "-1"){
+	if (message == "" || message == "-1"){
 		return;
 	}
 
+	std::string prefix = message.substr(0, 4);
+	std::string substring = message.substr(4, message.length() - 1);
+	int id;
+	std::stringstream(substring) >> id;
+	if (prefix == "unit"){
+		BWAPI::UnitType* unitType = new BWAPI::UnitType(id);
+		ActionType* type = new ActionType(*unitType);
+		buildOrder.add(*type);
+	}
+	else if (prefix == "tech"){
+		BWAPI::TechType* techType = new BWAPI::TechType(id);
+		ActionType* type = new ActionType(*techType);
+		buildOrder.add(*type);
+	}
+	else if (prefix == "upgr"){
+		BWAPI::UpgradeType* upgradeType = new BWAPI::UpgradeType(id);
+		ActionType* type = new ActionType(*upgradeType);
+		buildOrder.add(*type);
+	}
+
+	/*
 	// split message
 	std::vector<int> unitIDs;
 	std::stringstream ss(message);
@@ -43,11 +64,13 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> s
 	for (std::vector<int>::iterator it = unitIDs.begin(); it != unitIDs.end(); ++it) {
 		
 		BWAPI::UnitType* unitType = new BWAPI::UnitType(*it);
+		//BWAPI::TechType* techType = new BWAPI::TechType(*it);
 		ActionType* type = new ActionType(*unitType);
 		//std::string name = unitType->getName();
 		buildOrder.add(*type);
 
 	}
+	*/
 }
 
 
