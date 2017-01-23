@@ -32,7 +32,7 @@ void GameCommander::update()
 	_timerManager.stopTimer(TimerManager::MapTools);
 
 	_timerManager.startTimer(TimerManager::Search);
-	BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 200);
+	//BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 200);
 	_timerManager.stopTimer(TimerManager::Search);
 
 	// economy and base managers
@@ -207,6 +207,7 @@ BWAPI::Unit GameCommander::getFirstSupplyProvider()
 void GameCommander::onUnitShow(BWAPI::Unit unit)			
 { 
 	InformationManager::Instance().onUnitShow(unit); 
+	ProductionServiceManager::Instance().setNewState(true);
 	WorkerManager::Instance().onUnitShow(unit);
 }
 

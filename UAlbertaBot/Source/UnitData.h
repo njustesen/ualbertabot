@@ -66,7 +66,7 @@ public:
 
     UnitData();
 
-    void	updateUnit(BWAPI::Unit unit);
+	bool	updateUnit(BWAPI::Unit unit);
     void	removeUnit(BWAPI::Unit unit);
     void	removeBadUnits();
 

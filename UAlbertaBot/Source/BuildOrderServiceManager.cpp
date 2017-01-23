@@ -17,86 +17,43 @@ BuildOrderServiceManager::BuildOrderServiceManager()
 	
 }
 
-// start a new search for a new goal
-void BuildOrderServiceManager::startNewSearch(int currentFrame, int frameSkip)
+void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newGame)
 {
-    // convert from UAlbertaBot's meta goal type to BOSS ActionType goal
-    try
-    {
-		// Search
-		std::vector<int> own_units(256);
-		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
-		{
-			const UnitInfo & ui(kv.second);
-			own_units[ui.type.getID()]++;
-		}
-		std::vector<int> opp_units(256);
-		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
-		{
-			const UnitInfo & ui(kv.second);
-			opp_units[ui.type.getID()]++;
-		}
-		std::vector<int> own_techs(64);
-		for (const BWAPI::TechType & techType : BWAPI::TechTypes::allTechTypes())
-		{
-			if (BWAPI::Broodwar->self()->hasResearched(techType) || BWAPI::Broodwar->self()->isResearching(techType)){
-				own_techs[techType.getID()] = 1;
-			}
-		}
-		std::vector<int> own_upgrades(64);
-		for (const BWAPI::UpgradeType & upgradeType : BWAPI::UpgradeTypes::allUpgradeTypes())
-		{
-			if (BWAPI::Broodwar->self()->getUpgradeLevel(upgradeType) > 0 || BWAPI::Broodwar->self()->isUpgrading(upgradeType)){
-				own_upgrades[upgradeType.getID()] = 1;
-			}
-		}
-		_searchService->search(_previousBuildOrder, own_units, own_techs, own_upgrades, opp_units, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas());
-		_nextSearchFrame = currentFrame + frameSkip;
-    }
-    catch (const BOSS::BOSSException)
-    {
-        BWAPI::BroodwarPtr->printf("Exception in BOSS::GameState constructor, will try again next frame");
-    }
-}
 
-void BuildOrderServiceManager::update(int currentFrame, int frameSkip)
-{
-	// Only call service every frameSkip frames
-	if (currentFrame >= _nextSearchFrame){
-		
-		// Search
-		std::vector<int> own_units(256);
-		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
-		{
-			const UnitInfo & ui(kv.second);
-			own_units[ui.type.getID()]++;
-		}
-		std::vector<int> opp_units(256);
-		for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
-		{
-			const UnitInfo & ui(kv.second);
-			opp_units[ui.type.getID()]++;
-		}
-		std::vector<int> own_techs(64);
-		for (const BWAPI::TechType & techType : BWAPI::TechTypes::allTechTypes())
-		{
-			if (BWAPI::Broodwar->self()->hasResearched(techType) || BWAPI::Broodwar->self()->isResearching(techType)){
-				own_techs[techType.getID()] = 1;
-			}
-		}
-		std::vector<int> own_upgrades(64);
-		for (const BWAPI::UpgradeType & upgradeType : BWAPI::UpgradeTypes::allUpgradeTypes())
-		{
-			if (BWAPI::Broodwar->self()->getUpgradeLevel(upgradeType) > 0 || BWAPI::Broodwar->self()->isUpgrading(upgradeType)){
-				own_upgrades[upgradeType.getID()] = 1;
-			}
-		}
-		_searchService->search(_previousBuildOrder, own_units, own_techs, own_upgrades, opp_units, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas());
-		_nextSearchFrame = currentFrame + frameSkip;
-
-		//drawSearchInformation(20, 100);
-
+	// Search
+	std::vector<int> own_units(256);
+	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
+	{
+		const UnitInfo & ui(kv.second);
+		own_units[ui.type.getID()]++;
 	}
+	std::vector<int> opp_units(256);
+	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
+	{
+		const UnitInfo & ui(kv.second);
+		opp_units[ui.type.getID()]++;
+	}
+	std::vector<int> own_techs(64);
+	for (const BWAPI::TechType & techType : BWAPI::TechTypes::allTechTypes())
+	{
+		if (BWAPI::Broodwar->self()->hasResearched(techType) || BWAPI::Broodwar->self()->isResearching(techType)){
+			own_techs[techType.getID()] = 1;
+		}
+	}
+	std::vector<int> own_upgrades(64);
+	for (const BWAPI::UpgradeType & upgradeType : BWAPI::UpgradeTypes::allUpgradeTypes())
+	{
+		if (BWAPI::Broodwar->self()->getUpgradeLevel(upgradeType) > 0 || BWAPI::Broodwar->self()->isUpgrading(upgradeType)){
+			own_upgrades[upgradeType.getID()] = 1;
+		}
+	}
+
+	std::string own_race = BWAPI::Broodwar->self()->getRace().getName();
+	std::string opp_race = BWAPI::Broodwar->enemy()->getRace().getName();
+
+	_searchService->search(_previousBuildOrder, own_units, own_techs, own_upgrades, opp_units, own_race, opp_race, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas(), newGame);
+	_nextSearchFrame = currentFrame + frameSkip;
+
 }
 
 // start a new search for a new goal

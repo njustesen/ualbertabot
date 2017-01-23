@@ -25,10 +25,10 @@ class InformationManager
 
     int                     getIndex(BWAPI::Player player) const;
 
-    void                    updateUnit(BWAPI::Unit unit);
+	bool                    updateUnit(BWAPI::Unit unit);
     void                    initializeRegionInformation();
     void                    initializeBaseInfoVector();
-    void                    updateUnitInfo();
+    bool                    updateUnitInfo();
     void                    updateBaseLocationInfo();
     void                    updateOccupiedRegions(BWTA::Region * region,BWAPI::Player player);
     bool                    isValidUnit(BWAPI::Unit unit);
@@ -38,7 +38,7 @@ public:
     // yay for singletons!
     static InformationManager & Instance();
 
-    void                    update();
+	void                    update();
 
     // event driven stuff
     void					onUnitShow(BWAPI::Unit unit)        { updateUnit(unit); }

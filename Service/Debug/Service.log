@@ -1,7 +1,8 @@
-﻿Build started 16-12-2016 14:52:30.
-     1>Project "C:\ualbertabot\Service\Service.vcxproj" on node 3 (Build target(s)).
+﻿Build started 21-01-2017 15:10:52.
+     1>Project "C:\ualbertabot\Service\Service.vcxproj" on node 3 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib HttpClient.cpp Service.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib AssemblyInfo.cpp HttpClient.cpp Service.cpp
+         AssemblyInfo.cpp
          HttpClient.cpp
          Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
          - add -D_WIN32_WINNT=0x0501 to the compiler command line; or
@@ -39,6 +40,10 @@
          	Found an intrinsic not supported in managed code
      1>c:\libs\boost_1_60_0\boost\asio\detail\impl\winsock_init.ipp(67): warning C4793: 'boost::asio::detail::winsock_init_base::throw_on_error' : function compiled as native :
          	Found an intrinsic not supported in managed code
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\libs\BWAPI\/include/ /IC:\libs\boost_1_60_0 /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /analyze- /errorReport:prompt "C:\Users\noju\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\app.res" app.rc 
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ualbertabot\UAlbertaBot\VisualStudio\Debug\Service.dll" /INCREMENTAL /NOLOGO /LIBPATH:C:\libs\boost_1_60_0\stage\lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ualbertabot\UAlbertaBot\VisualStudio\Debug\Service.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
          Debug\AssemblyInfo.obj
@@ -46,8 +51,8 @@
          Debug\Service.obj
          "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
          Service.vcxproj -> C:\ualbertabot\UAlbertaBot\VisualStudio\Debug\Service.dll
-     1>Done Building Project "C:\ualbertabot\Service\Service.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\ualbertabot\Service\Service.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.43
+Time Elapsed 00:00:16.76

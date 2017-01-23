@@ -20,6 +20,7 @@ class ProductionServiceManager
     bool                _enemyCloakedDetected;
     bool                _assignedWorkerForThisBuilding;
     bool                _haveLocationForThisBuilding;
+	bool				_stateWasUpdated;
     
     BWAPI::Unit         getClosestUnitToPosition(const BWAPI::Unitset & units,BWAPI::Position closestTo);
     BWAPI::Unit         selectUnitOfType(BWAPI::UnitType type,BWAPI::Position closestTo = BWAPI::Position(0,0));
@@ -41,6 +42,7 @@ class ProductionServiceManager
     int                 getFreeGas();
     bool                canPlanBuildOrderNow() const;
 
+
 public:
 
 	static ProductionServiceManager &	Instance();
@@ -53,6 +55,8 @@ public:
     void        drawProductionInformation(int x,int y);
     void        setSearchGoal(MetaPairVector & goal);
     void        queueGasSteal();
+
+	void		setNewState(bool newState);
 
     BWAPI::Unit getProducer(MetaType t,BWAPI::Position closestTo = BWAPI::Positions::None);
 };

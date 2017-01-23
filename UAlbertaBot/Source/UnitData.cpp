@@ -17,9 +17,9 @@ UnitData::UnitData()
 	numUnits		    = std::vector<int>(maxTypeID + 1, 0);
 }
 
-void UnitData::updateUnit(BWAPI::Unit unit)
+bool UnitData::updateUnit(BWAPI::Unit unit)
 {
-	if (!unit) { return; }
+	if (!unit) { return false; }
 
     bool firstSeen = false;
     auto & it = unitMap.find(unit);
@@ -42,7 +42,9 @@ void UnitData::updateUnit(BWAPI::Unit unit)
     if (firstSeen)
     {
         numUnits[unit->getType().getID()]++;
+		return true;
     }
+	return false;
 }
 
 void UnitData::removeUnit(BWAPI::Unit unit)

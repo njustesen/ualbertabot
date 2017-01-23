@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "InformationManager.h"
+#include "ProductionServiceManager.h"
 
 using namespace UAlbertaBot;
 
@@ -16,27 +17,37 @@ InformationManager & InformationManager::Instance()
 	return instance;
 }
 
-void InformationManager::update() 
+void InformationManager::update()
 {
-	updateUnitInfo();
+	bool newUnits = updateUnitInfo();
 	updateBaseLocationInfo();
 }
 
-void InformationManager::updateUnitInfo() 
+bool InformationManager::updateUnitInfo()
 {
+	bool newUnits = false;
+
 	for (auto & unit : BWAPI::Broodwar->enemy()->getUnits())
 	{
-		updateUnit(unit);
+		bool newUnit = updateUnit(unit);
+		if (newUnit){
+			newUnits = true;
+		}
 	}
 
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
-		updateUnit(unit);
+		bool newUnit = updateUnit(unit);
+		if (newUnit){
+			newUnits = true;
+		}
 	}
 
 	// remove bad enemy units
 	_unitData[_enemy].removeBadUnits();
 	_unitData[_self].removeBadUnits();
+
+	return newUnits;
 }
 
 void InformationManager::initializeRegionInformation() 
@@ -446,14 +457,14 @@ void InformationManager::drawMapInformation()
 	}
 }
 
-void InformationManager::updateUnit(BWAPI::Unit unit)
+bool InformationManager::updateUnit(BWAPI::Unit unit)
 {
     if (!(unit->getPlayer() == _self || unit->getPlayer() == _enemy))
     {
-        return;
+        return false;
     }
 
-    _unitData[unit->getPlayer()].updateUnit(unit);
+    return _unitData[unit->getPlayer()].updateUnit(unit);
 }
 
 // is the unit valid?

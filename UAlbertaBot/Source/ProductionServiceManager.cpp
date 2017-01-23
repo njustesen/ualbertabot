@@ -6,8 +6,10 @@ ProductionServiceManager::ProductionServiceManager()
 	: _assignedWorkerForThisBuilding (false)
 	, _haveLocationForThisBuilding   (false)
 	, _enemyCloakedDetected          (false)
+	, _stateWasUpdated               (false)
 {
-    setBuildOrder(StrategyManager::Instance().getOpeningBookBuildOrder());
+	// Opening build order
+    // setBuildOrder(StrategyManager::Instance().getOpeningBookBuildOrder());
 }
 
 void ProductionServiceManager::setBuildOrder(const BuildOrder & buildOrder)
@@ -27,26 +29,26 @@ void ProductionServiceManager::performBuildOrderSearch()
         return;
     }
 
-	if (BuildOrderServiceManager::Instance().isSearchInProgress()){
+	if (!BuildOrderServiceManager::Instance().isSearchInProgress()){
+		//BuildOrderServiceManager::Instance().startNewSearch(BWAPI::Broodwar->getFrameCount(), 300);
+		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
 
-		// Search
-		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300);
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
 		if (buildOrder.size() > 0)
 		{
 			setBuildOrder(buildOrder);
 			//BuildOrderServiceManager::Instance().reset();
 		}
-		else
-		{
-			if (!BuildOrderServiceManager::Instance().isSearchInProgress())
-			{
-				BuildOrderServiceManager::Instance().startNewSearch(BWAPI::Broodwar->getFrameCount(), 300);
-			}
-		}
 	}
-	else {
-		BuildOrderServiceManager::Instance().startNewSearch(BWAPI::Broodwar->getFrameCount(), 300);
+	else if (_stateWasUpdated){
+		_stateWasUpdated = false;
+		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
+		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
+		if (buildOrder.size() > 0)
+		{
+			setBuildOrder(buildOrder);
+			//BuildOrderServiceManager::Instance().reset();
+		}
 	}
 
 }
@@ -141,7 +143,6 @@ void ProductionServiceManager::manageBuildOrderQueue()
 
 			// and remove it from the _queue
 			_queue.removeCurrentHighestPriorityItem();
-
 			// don't actually loop around in here
 			break;
 		}
@@ -631,6 +632,11 @@ ProductionServiceManager & ProductionServiceManager::Instance()
 void ProductionServiceManager::queueGasSteal()
 {
     _queue.queueAsHighestPriority(MetaType(BWAPI::Broodwar->self()->getRace().getRefinery()), true, true);
+}
+
+void ProductionServiceManager::setNewState(bool newState)
+{
+	_stateWasUpdated = newState;
 }
 
 // this will return true if any unit is on the first frame if it's training time remaining

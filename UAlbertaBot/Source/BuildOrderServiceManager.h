@@ -40,8 +40,7 @@ public:
 
     BuildOrder                  getBuildOrder();
     
-	void                        startNewSearch(int currentFrame, int frameSkip);
-	void						update(int currentFrame, int frameSkip);
+	void						update(int currentFrame, int frameSkip, bool newGame);
 
 	bool                        isSearchInProgress();
 
