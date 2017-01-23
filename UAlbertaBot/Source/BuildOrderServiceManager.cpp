@@ -22,10 +22,30 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 
 	// Search
 	std::vector<int> own_units(256);
+	std::vector<std::string> own_units_under_construction(256);
+	std::vector<int> own_upgrades_under_construction(64);
+	std::vector<int> own_techs_under_construction(64);
 	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
 	{
 		const UnitInfo & ui(kv.second);
-		own_units[ui.type.getID()]++;
+		if (ui.unit->getRemainingBuildTime() > 0){
+			if (own_units_under_construction[ui.type.getID()] == ""){
+				own_units_under_construction[ui.type.getID()] = std::to_string(ui.unit->getRemainingBuildTime());
+			}
+			else {
+				own_units_under_construction[ui.type.getID()] += "," + std::to_string(ui.unit->getRemainingBuildTime());
+			}
+		}
+		else {
+			own_units[ui.type.getID()]++;
+			if (ui.unit->getTech() != BWAPI::TechTypes::None){
+				own_techs_under_construction[ui.unit->getTech().getID()] = ui.unit->getRemainingResearchTime();
+			}
+			if (ui.unit->getUpgrade() != BWAPI::UpgradeTypes::None){
+				own_upgrades_under_construction[ui.unit->getUpgrade().getID()] = ui.unit->getRemainingUpgradeTime();
+			}
+		}
+
 	}
 	std::vector<int> opp_units(256);
 	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
@@ -36,7 +56,7 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 	std::vector<int> own_techs(64);
 	for (const BWAPI::TechType & techType : BWAPI::TechTypes::allTechTypes())
 	{
-		if (BWAPI::Broodwar->self()->hasResearched(techType) || BWAPI::Broodwar->self()->isResearching(techType)){
+		if (BWAPI::Broodwar->self()->hasResearched(techType)){
 			own_techs[techType.getID()] = 1;
 		}
 	}
@@ -51,7 +71,7 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 	std::string own_race = BWAPI::Broodwar->self()->getRace().getName();
 	std::string opp_race = BWAPI::Broodwar->enemy()->getRace().getName();
 
-	_searchService->search(_previousBuildOrder, own_units, own_techs, own_upgrades, opp_units, own_race, opp_race, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas(), newGame);
+	_searchService->search(_previousBuildOrder, own_units, own_units_under_construction, own_techs, own_techs_under_construction, own_upgrades, own_upgrades_under_construction, opp_units, own_race, opp_race, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas(), newGame);
 	_nextSearchFrame = currentFrame + frameSkip;
 
 }

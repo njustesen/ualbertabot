@@ -12,11 +12,19 @@ BuildOrderSearchService::BuildOrderSearchService(const GameState state)
 
 }
 
-void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, std::string own_race, std::string opp_race, int frame, int min, int gas, bool new_game)
+void BuildOrderSearchService::search(BuildOrder & buildOrder, 
+	std::vector<int> own_units,
+	std::vector<std::string> own_units_under_construction,
+	std::vector<int> own_techs,
+	std::vector<int> own_techs_under_construction,
+	std::vector<int> own_upgrades,
+	std::vector<int> own_upgrades_under_construction,
+	std::vector<int> opp_units, std::string own_race,
+	std::string opp_race, int frame, int min, int gas, bool new_game)
 {
 	
 	// Call service
-	std::string message = _service.update(own_units, own_techs, own_upgrades, opp_units, own_race, opp_race, frame, min, gas, new_game);
+	std::string message = _service.update(own_units, own_units_under_construction, own_techs, own_techs_under_construction, own_upgrades, own_upgrades_under_construction, opp_units, own_race, opp_race, frame, min, gas, new_game);
 	//std::string message = _service.cal();
 
 	// Check for errors

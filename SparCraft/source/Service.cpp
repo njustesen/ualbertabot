@@ -100,7 +100,15 @@ std::string Service::call(std::string host, std::string path){
 	return body;
 }
 
-std::string Service::update(std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, std::string own_race, std::string opp_race, int frame, int min, int gas, bool new_game){
+std::string Service::update(
+	std::vector<int> own_units, 
+	std::vector<std::string> own_units_under_construction,
+	std::vector<int> own_techs, 
+	std::vector<int> own_techs_under_construction,
+	std::vector<int> own_upgrades, 
+	std::vector<int> own_upgrades_under_construction,
+	std::vector<int> opp_units, std::string own_race, 
+	std::string opp_race, int frame, int min, int gas, bool new_game){
 	
 	std::string host = "127.0.0.1";
 	std::string path = "/app/update/";
@@ -114,6 +122,15 @@ std::string Service::update(std::vector<int> own_units, std::vector<int> own_tec
 		}
 	}
 
+	path.append("&own_units_under_construction=");
+	for (int i = 0; i < own_units_under_construction.size(); i++){
+		std::string u = own_units_under_construction[i];
+		path.append(u);
+		if (i < own_units_under_construction.size() - 1){
+			path.append("-");
+		}
+	}
+
 	path.append("&own_techs=");
 	for (int i = 0; i < own_techs.size(); i++){
 		std::string u = std::to_string(own_techs[i]);
@@ -123,11 +140,29 @@ std::string Service::update(std::vector<int> own_units, std::vector<int> own_tec
 		}
 	}
 
+	path.append("&own_techs_under_construction=");
+	for (int i = 0; i < own_techs_under_construction.size(); i++){
+		std::string u = std::to_string(own_techs_under_construction[i]);
+		path.append(u);
+		if (i < own_techs_under_construction.size() - 1){
+			path.append("-");
+		}
+	}
+
 	path.append("&own_upgrades=");
 	for (int i = 0; i < own_upgrades.size(); i++){
 		std::string u = std::to_string(own_upgrades[i]);
 		path.append(u);
 		if (i < own_upgrades.size() - 1){
+			path.append("-");
+		}
+	}
+
+	path.append("&own_upgrades_under_construction=");
+	for (int i = 0; i < own_upgrades_under_construction.size(); i++){
+		std::string u = std::to_string(own_upgrades_under_construction[i]);
+		path.append(u);
+		if (i < own_upgrades_under_construction.size() - 1){
 			path.append("-");
 		}
 	}
