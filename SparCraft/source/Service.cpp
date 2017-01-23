@@ -13,7 +13,7 @@ using boost::asio::ip::tcp;
 Service::Service(){
 }
 
-std::string Service::cal(std::string host, std::string path){
+std::string Service::call(std::string host, std::string path){
 	std::string res = "";
 	std::string body = "";
 	try{
@@ -100,7 +100,7 @@ std::string Service::cal(std::string host, std::string path){
 	return body;
 }
 
-std::string Service::call(std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, std::string own_race, std::string opp_race, int frame, int min, int gas, bool new_game){
+std::string Service::update(std::vector<int> own_units, std::vector<int> own_techs, std::vector<int> own_upgrades, std::vector<int> opp_units, std::string own_race, std::string opp_race, int frame, int min, int gas, bool new_game){
 	
 	std::string host = "127.0.0.1";
 	std::string path = "/app/update/";
@@ -151,7 +151,7 @@ std::string Service::call(std::vector<int> own_units, std::vector<int> own_techs
 	path.append("&minerals=" + std::to_string(min));
 	path.append("&gas=" + std::to_string(gas));
 		
-	std::string message = cal(host, path);
+	std::string message = call(host, path);
 
 	return message;
 }

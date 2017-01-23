@@ -16,7 +16,7 @@ void BuildOrderSearchService::search(BuildOrder & buildOrder, std::vector<int> o
 {
 	
 	// Call service
-	std::string message = _service.call(own_units, own_techs, own_upgrades, opp_units, own_race, opp_race, frame, min, gas, new_game);
+	std::string message = _service.update(own_units, own_techs, own_upgrades, opp_units, own_race, opp_race, frame, min, gas, new_game);
 	//std::string message = _service.cal();
 
 	// Check for errors
