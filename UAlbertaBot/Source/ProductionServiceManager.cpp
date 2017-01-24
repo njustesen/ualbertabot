@@ -22,25 +22,28 @@ void ProductionServiceManager::setBuildOrder(const BuildOrder & buildOrder)
 	}
 }
 
+int ProductionServiceManager::getQueueSize(){
+	return _queue.size();
+}
+
 void ProductionServiceManager::performBuildOrderSearch()
 {	
     if (!Config::Modules::UsingBuildOrderSearch || !canPlanBuildOrderNow())
     {
         return;
     }
-
 	if (!BuildOrderServiceManager::Instance().isSearchInProgress()){
 		//BuildOrderServiceManager::Instance().startNewSearch(BWAPI::Broodwar->getFrameCount(), 300);
 		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
-
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
+
 		if (buildOrder.size() > 0)
 		{
 			setBuildOrder(buildOrder);
 			//BuildOrderServiceManager::Instance().reset();
 		}
 	}
-	else if (_stateWasUpdated){
+	else if (_queue.size() == 0){
 		_stateWasUpdated = false;
 		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();

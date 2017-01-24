@@ -47,6 +47,17 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 		}
 
 	}
+	// Buildings assigned to be build, count as being build
+	for (const BWAPI::UnitType & type : BuildingManager::Instance().buildingsQueued())
+	{
+		if (own_units_under_construction[type.getID()] == ""){
+			own_units_under_construction[type.getID()] = std::to_string(type.buildTime());
+		}
+		else {
+			own_units_under_construction[type.getID()] += "," + std::to_string(type.buildTime());
+		}
+	}
+
 	std::vector<int> opp_units(256);
 	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
 	{

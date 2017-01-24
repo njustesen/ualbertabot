@@ -55,6 +55,7 @@ public:
     void        drawProductionInformation(int x,int y);
     void        setSearchGoal(MetaPairVector & goal);
     void        queueGasSteal();
+	int			getQueueSize();
 
 	void		setNewState(bool newState);
 
