@@ -7,6 +7,7 @@ ProductionServiceManager::ProductionServiceManager()
 	, _haveLocationForThisBuilding   (false)
 	, _enemyCloakedDetected          (false)
 	, _stateWasUpdated               (false)
+	, _lastSearchFrame				 (0)
 {
 	// Opening build order
     // setBuildOrder(StrategyManager::Instance().getOpeningBookBuildOrder());
@@ -43,8 +44,9 @@ void ProductionServiceManager::performBuildOrderSearch()
 			//BuildOrderServiceManager::Instance().reset();
 		}
 	}
-	else if (_queue.size() == 0){
+	else if (_queue.size() == 0 || (BWAPI::Broodwar->getFrameCount() - _lastSearchFrame > 600)){
 		_stateWasUpdated = false;
+		_lastSearchFrame = BWAPI::Broodwar->getFrameCount();
 		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
 		if (buildOrder.size() > 0)
