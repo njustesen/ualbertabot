@@ -48,7 +48,7 @@ namespace Assert
         
         #if !defined(EMSCRIPTEN)
             std::cerr << ss.str();  
-            throw BOSSException(ss.str());
+            //throw BOSSException(ss.str());
         #else
             printf("C++ AI: AI Exception Thrown:\n %s\n", ss.str().c_str());
             throw BOSSException(ss.str());

@@ -1,10 +1,8 @@
-c:\ualbertabot\service\debug\service.pch
 c:\ualbertabot\service\debug\vc120.pdb
-c:\ualbertabot\service\debug\stdafx.obj
 c:\ualbertabot\service\debug\service.obj
+c:\ualbertabot\service\debug\httpclient.obj
 c:\ualbertabot\service\debug\assemblyinfo.obj
 c:\ualbertabot\service\debug\.netframework,version=v4.5.assemblyattributes.obj
-c:\ualbertabot\service\debug\httpclient.obj
 c:\ualbertabot\ualbertabot\visualstudio\debug\service.dll
 c:\ualbertabot\ualbertabot\visualstudio\debug\service.pdb
 c:\ualbertabot\service\debug\app.res

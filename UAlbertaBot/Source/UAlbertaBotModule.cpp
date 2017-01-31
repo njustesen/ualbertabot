@@ -17,6 +17,7 @@
 #include "UnitUtil.h"
 
 using namespace UAlbertaBot;
+using namespace std;
 
 // This gets called when the bot starts!
 void UAlbertaBotModule::onStart()
@@ -68,7 +69,12 @@ void UAlbertaBotModule::onEnd(bool isWinner)
 {
 	if (Config::Modules::UsingGameCommander)
 	{
-		StrategyManager::Instance().onEnd(isWinner);
+		std::ofstream log("C:/results.txt", std::ios_base::app | std::ios_base::out);
+		std::string win = "loss";
+		if (true){
+			win = "win";
+		}
+		log << win + "\n";
 	}	
 }
 

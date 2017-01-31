@@ -25,9 +25,21 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 	std::vector<std::string> own_units_under_construction(256);
 	std::vector<int> own_upgrades_under_construction(64);
 	std::vector<int> own_techs_under_construction(64);
+	int workers = 0;
+	int bases = 0;
+	int geysers = 0;
 	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getUnits())
 	{
 		const UnitInfo & ui(kv.second);
+		if (ui.type.isWorker()){
+			workers++;
+		}
+		else if (ui.type.isResourceDepot()){
+			bases++;
+		}
+		else if (ui.type.getID() == 157 || ui.type.getID() == 110){
+			geysers++;
+		}
 		if (ui.unit->getRemainingBuildTime() > 0){
 			if (own_units_under_construction[ui.type.getID()] == ""){
 				own_units_under_construction[ui.type.getID()] = std::to_string(ui.unit->getRemainingBuildTime());
@@ -38,6 +50,14 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 		}
 		else {
 			own_units[ui.type.getID()]++;
+			own_units[85] += ui.unit->getScarabCount();
+			own_units[73] += ui.unit->getInterceptorCount();
+			if (ui.unit->canCancelTrain() && ui.unit->getType() == BWAPI::UnitTypes::Protoss_Reaver){
+				own_units[85] += 1;
+			}
+			if (ui.unit->canCancelTrain() && ui.unit->getType() == BWAPI::UnitTypes::Protoss_Carrier){
+				own_units[73] += 1;
+			}
 			if (ui.unit->getTech() != BWAPI::TechTypes::None){
 				own_techs_under_construction[ui.unit->getTech().getID()] = ui.unit->getRemainingResearchTime();
 			}
@@ -81,8 +101,12 @@ void BuildOrderServiceManager::update(int currentFrame, int frameSkip, bool newG
 
 	std::string own_race = BWAPI::Broodwar->self()->getRace().getName();
 	std::string opp_race = BWAPI::Broodwar->enemy()->getRace().getName();
-
-	_searchService->search(_previousBuildOrder, own_units, own_units_under_construction, own_techs, own_techs_under_construction, own_upgrades, own_upgrades_under_construction, opp_units, own_race, opp_race, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas(), newGame);
+	if (bases == 0 || (workers - geysers * 3 < 1 && BWAPI::Broodwar->self()->minerals() < 50)){
+		_previousBuildOrder = BOSS::BuildOrder();
+	}
+	else{
+		_searchService->search(_previousBuildOrder, own_units, own_units_under_construction, own_techs, own_techs_under_construction, own_upgrades, own_upgrades_under_construction, opp_units, own_race, opp_race, BWAPI::Broodwar->getFrameCount(), BWAPI::Broodwar->self()->minerals(), BWAPI::Broodwar->self()->gas(), newGame);
+	}
 	_nextSearchFrame = currentFrame + frameSkip;
 
 }

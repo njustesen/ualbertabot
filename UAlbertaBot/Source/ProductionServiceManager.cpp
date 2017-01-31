@@ -35,7 +35,7 @@ void ProductionServiceManager::performBuildOrderSearch()
     }
 	if (!BuildOrderServiceManager::Instance().isSearchInProgress()){
 		//BuildOrderServiceManager::Instance().startNewSearch(BWAPI::Broodwar->getFrameCount(), 300);
-		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, false);
+		BuildOrderServiceManager::Instance().update(BWAPI::Broodwar->getFrameCount(), 300, true);
 		BuildOrder & buildOrder = BuildOrderServiceManager::Instance().getBuildOrder();
 
 		if (buildOrder.size() > 0)
@@ -107,6 +107,30 @@ void ProductionServiceManager::manageBuildOrderQueue()
 
 	// the current item to be used
 	BuildOrderItem & currentItem = _queue.getHighestPriorityItem();
+
+	// Scarabs (Dark Archon)
+	if (currentItem.metaType.getName() == "Protoss_Dark_Archon"){
+		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+		{
+			if (unit->getType() == BWAPI::UnitTypes::Protoss_Reaver){
+				if (unit->canTrain(BWAPI::UnitTypes::Protoss_Scarab)
+						&& !unit->isBeingConstructed()
+						&& unit->getScarabCount() < 5){
+
+					unit->train(BWAPI::UnitTypes::Protoss_Scarab);
+					_queue.removeCurrentHighestPriorityItem();
+				}
+			}
+			else if (unit->getType() == BWAPI::UnitTypes::Protoss_Carrier){
+				if (unit->canTrain(BWAPI::UnitTypes::Protoss_Interceptor)
+						&& !unit->isBeingConstructed()
+						&& unit->getInterceptorCount() < 4){
+					unit->train(BWAPI::UnitTypes::Protoss_Interceptor);
+					_queue.removeCurrentHighestPriorityItem();
+				}
+			}
+		}
+	}
 
 	// while there is still something left in the _queue
 	while (!_queue.isEmpty()) 
