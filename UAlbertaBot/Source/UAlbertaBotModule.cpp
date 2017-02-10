@@ -33,8 +33,8 @@ void UAlbertaBotModule::onStart()
     ParseUtils::ParseConfigFile(Config::ConfigFile::ConfigFileLocation);
 
     // Set our BWAPI options here    
-	BWAPI::Broodwar->setLocalSpeed(Config::BWAPIOptions::SetLocalSpeed);
-	BWAPI::Broodwar->setFrameSkip(Config::BWAPIOptions::SetFrameSkip);
+	//BWAPI::Broodwar->setLocalSpeed(Config::BWAPIOptions::SetLocalSpeed);
+	//BWAPI::Broodwar->setFrameSkip(Config::BWAPIOptions::SetFrameSkip);
     
     if (Config::BWAPIOptions::EnableCompleteMapInformation)
     {
@@ -71,7 +71,7 @@ void UAlbertaBotModule::onEnd(bool isWinner)
 	{
 		std::ofstream log("C:/results.txt", std::ios_base::app | std::ios_base::out);
 		std::string win = "loss";
-		if (true){
+		if (isWinner){
 			win = "win";
 		}
 		log << win + "\n";
