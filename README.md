@@ -1,4 +1,4 @@
-UAlbertaBot with Brood War Strategy Server (https://github.com/njustesen/broodwar_strategy_server)
+UAlbertaBot with a web client that can connect to Brood War Strategy Server (https://github.com/njustesen/broodwar_strategy_server)
 
 Author of UAlbertaBot:  David Churchill (dave.churchill@gmail.com)
 <!-- #Author of Brood War Strategy Server extension by Niels Justesen (njustesen@gmail.com) -->
